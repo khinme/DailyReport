@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <script src="js/DR01Loginjs.js"></script>
+    <script src="js/DR02Tourokujs.js"></script>
+    <script src="lib/onsenui/js/onsenui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link rel="stylesheet" href="css/style.css">
+
+    <script>
+        //
+        // TODO: Write JavaScript code here
+        //
+
+  document.addEventListener('init', function(event) {
+  var page = event.target;
+
+  if (page.id === 'page3') {
+    page.querySelector('#BT_Kakunin').onclick = function() {
+      document.querySelector('#myNavigator1').pushPage('page4.html', {data: {title: 'アカウント登録確認'},
+      callback:function()
+      {
+       var untenshamei = document.getElementById("TB_Untenshamei").value;
+       var sharyoubangou = document.getElementById("TB_Sharyoubangou").value;
+       var sharyoushousai = document.getElementById("TB_Sharyoushousai").value;
+       var tpass = document.getElementById("TB_Tpass").value;
+       
+       var tpasskakunin = document.getElementById("TB_Tpasskakunin").value;
+       $('#LB_Untenshamei').text( untenshamei);
+       $('#LB_Sharyoubangou').text(sharyoubangou);
+       $('#LB_Sharyoushousai').text(sharyoushousai);
+       $('#LB_Tpass').text(tpass.replace(/./g, "*"));
+       $('#LB_Tpasskakunin').text(tpasskakunin.replace(/./g, "*"));
+      }
+      });
+    };
+  } else if (page.id === 'page4') {
+    page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+  }
+});
+
+
+
+    </script>
+</head>
+<body>
+    <form method="POST">
+    <ons-navigator swipeable id="myNavigator1" page="page3.html"></ons-navigator>
+    <template id="page3.html">
+    <ons-page id="page3">
+     <ons-toolbar>
+          <div class="center"><label class="drfont" >アカウント登録</label></div>
+    </ons-toolbar>
+     
+    <div style="margin-top: 30px;text-align:center;">
+        
+        <div style="margin-bottom:30px;">
+        <ons-icon  size="120px" icon="md-account-circle"></ons-icon>         
+        </div>
+        
+        
+        <div style="margin-bottom:20px;">
+         <div style="margin-left:-212px;">   
+        <label class="drfont1">運転者名<span class="Starcolor">*</span></label><br/>
+         </div>
+        <input id="TB_Untenshamei" type="text" class="d01 drfont txthighlight text-input text-input--underbar" float>
+       
+        </div>
+
+        <div style="margin-bottom:20px;">
+        <div style="margin-left:-212px;">
+        <label class="drfont1">車両番号<span class="Starcolor">*</span></label><br/>
+        </div>
+        <input id="TB_Sharyoubangou" type="text" class="d01 drfont txthighlight text-input text-input--underbar" float>
+        </div>
+
+        <div style="margin-bottom:20px;">
+        <label class="drfont1">車両詳細(任意：　車種、ナンバープレートなど)<span class="Starcolor">*</span></label><br/>
+        <input id="TB_Sharyoushousai" type="text" class="d01 drfont txthighlight text-input text-input--underbar" float>
+        </div>
+
+        <div style="margin-bottom:20px;">
+        <div style="margin-left:-200px;">
+        <label class="drfont1">パスワード<span class="Starcolor">*</span></label><br/>
+        </div>
+        <input id="TB_Tpass" type="password" class="d01 drfont txthighlight text-input text-input--underbar" float>
+        </div>
+
+        <div style="margin-bottom:30px;">
+        <div style="margin-left:-160px;">
+        <label class="drfont1">パスワード再確認<span class="Starcolor">*</span></label><br/>
+        </div>
+        <input id="TB_Tpasskakunin" type="password" class="d01 drfont txthighlight text-input text-input--underbar" float>
+        </div>
+
+        <div>
+             <ons-button id="BT_Kakunin" class="drloginbtn drfont" style="text-align:center;" onclick = "CopyToLabel()">確認画面へ</ons-button>  
+        </div>
+
+    </div>
+     
+    </ons-page>
+    </template>
+
+    <template id="page4.html">
+  <ons-page id="page4">
+    <ons-toolbar>
+      <div class="left"><ons-back-button></ons-back-button></div>
+      <div class="center"></div>
+    </ons-toolbar>
+    <div id="overlay" onclick="off()"></div>
+    <div style="margin-top: 30px;text-align:center;">
+    <div style="margin-bottom:30px;">
+        <ons-icon  size="120px" icon="md-account-circle"></ons-icon>         
+        </div>
+        
+        <div style="margin-bottom:40px;">
+        <div style="margin-left:-212px;">
+        <label class="drfont2">運転者名</label><br/>
+        </div>
+        <div style="margin-left:-270px;">
+         <label id="LB_Untenshamei" style="position:absolute;" for="TB_Untenshamei" class="drfont2"></label>
+        </div>   
+        </div>
+
+        <div style="margin-bottom:40px;">
+        <div style="margin-left:-212px;">
+        <label class="drfont2">車両番号</label><br/>
+        </div>
+        <div style="margin-left:-270px;">
+        <label id="LB_Sharyoubangou" style="position:absolute;" for="TB_Sharyoubangou" class="drfont2"></label>
+        </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+        <div style="margin-left:45px;">
+        <label class="drfont2">車両詳細(任意： 車種、ナンバープレートなど)</label><br/>
+        </div>
+        <div style="margin-left:-270px;">
+        <label id="LB_Sharyoushousai" style="position:absolute;" for="TB_Sharyoushousai" class="drfont2"></label>
+        </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+        <div style="margin-left:-200px;">
+        <label class="drfont2">パスワード</label><br/>
+        </div>
+        <div style="margin-left:-270px;">
+        <label id="LB_Tpass" style="position:absolute;" for="TB_Tpass" class="drfont2"></label>
+        </div>
+        </div>
+
+        <div style="margin-bottom:40px;">
+        <div style="margin-left:-155px;">
+        <label class="drfont2">パスワード再確認</label><br/>
+        </div>
+        <div style="margin-left:-270px;">
+        <label id="LB_Tpasskakunin" style="position:absolute;" for="TB_Tpasskakunin" class="drfont2"></label>
+        </div>
+        </div>
+
+        <div>
+            <a href="DR04MailKakunin.html" onclick="return createTimedLink(this, myFunction, 3000);">
+             <ons-button id="BT_Touroku" class="drloginbtn drfont" style="text-align:center;"  onclick="on();toggleLoader();changetourokutext()">登録</ons-button>  
+             <div id="loader" class="tourokuloader" style="display:none;">
+                <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                 <div></div>
+                 </div>
+                 </div>
+            </a>
+        </div>
+    </div>
+  </ons-page>
+    </template>
+    </form>
+</body>
+</html>
