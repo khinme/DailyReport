@@ -26,8 +26,8 @@
       document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
     }
 
-var applicationKey = "34e6eba9da78c2a481b1e375411b421b20a4e11838619d0d8715fe0a467de3c5" ;
-  var clientKey = "ba9f7ad6db0d05eda3667a280470d713fe30c226d674bf6aa004bc576477b534" ;
+var applicationKey = "05ec7d93cac7a3226f2486e6e974969bc49fa9661211a6aca20b95f8591c4014" ;
+  var clientKey = "7ec99a6144a897036ef8d0ba113695c73f7bbddd93b79b1ddbd6566e81c578b4" ;
  // [NCMB] SDK initialization 
   var ncmb = new NCMB (applicationKey, clientKey);
 //   var TestClass = ncmb.DataStore ( "TestClass" );
@@ -119,6 +119,7 @@ function testlogin()
 
 }
 
+
 //  function spinner() {   
 //      document.getElementsByClassName("loader")[0].style.display = "block";    
 //     }
@@ -132,6 +133,7 @@ function testlogin()
   <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
   <template id="page1.html">
  <ons-page id="page1">
+     <div class="background"></div>
      <div id="overlay" onclick="off()"></div>
    
     <div style="text-align: center;">
@@ -182,7 +184,7 @@ function testlogin()
                   <!-- <ons-button id="Lnk_pass">パスワードをお忘れの方</ons-button> -->
             <a href="#" id="Lnk_pass" class="drfont">パスワードをお忘れの方</a> 
         </div>  
-         <div style="margin-top: 30px;">  
+         <div style="margin-top: 30px;margin-bottom:20px;">  
              <!-- <a href="register01.html"> -->
             <ons-button id="BT_reg" class="drloginbtn drfont" style="background-color:orange;" >新規登録</ons-button> 
            
@@ -201,6 +203,7 @@ function testlogin()
       <div class="left"><ons-back-button></ons-back-button></div>
       <div class="center"></div>
     </ons-toolbar>
+    <div class="background"></div>
    <div id="overlay1" onclick="off1()"></div>
    <div class="dr01divmail" style="text-align: center;"> 
        <div>
@@ -235,6 +238,7 @@ function testlogin()
       <div class="left"><ons-back-button></ons-back-button></div>
       <div class="center">パスワード再設定</div>
     </ons-toolbar>
+    <div class="background"></div>
     <div id="overlay2"></div>
     <div class="dr01rpassdivmail" style="text-align:center;">
         <div style="margin-bottom:50px;">
