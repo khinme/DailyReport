@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
     <script src="components/loader.js"></script>
     <script src="js/DR01Loginjs.js"></script>
-    <script src="js/DR02Tourokujs.js"></script>
+
     <script src="lib/onsenui/js/onsenui.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <link rel="stylesheet" href="components/loader.css">
@@ -40,15 +40,35 @@ function testmail()
 {
     var mail=document.getElementById("TB_mail").value;    
      ncmb.User.requestSignUpEmail(mail)
-           .then(function(data){
-              // 送信後処理
-            //   alert ('送信後処理');
+           .then(function(data)
+           {
+            $("#page2").delay(4000).fadeIn();
+            $("#TB_mail").css("border", "1px solid");
+            $('#page2').trigger('change',on1());
+            $('#page2').trigger('change',toggleLoader1());
+            $('#page2').trigger('change',changesoushintext());
+            // $('#page2').load('DR02Mail.html');
+            
+            setTimeout(function() {
+             location.href = "DR02Mail.html";
+             }, 3000);
+           
            })
-           .catch(function(err){
+           .catch(function(err)
+           {
              // エラー処理
-           alert ('エラー処理');
-          });
+           //alert ('エラー処理');
+            $("#TB_mail").css("border", "1px solid red");
+            $("#TB_mail").focus();
+            
+            });
         //  alert ('送信後処理aaa');
+}
+
+
+
+function getData(e) {
+    e.preventDefault();
 }
     
   document.addEventListener('init', function(event) {
@@ -74,9 +94,35 @@ function testmail()
   }
 });
 
+function testlogin()
+{
+    document.getElementById("LB_errmailaddress").style.display = "none";
+    document.getElementById("LB_errpass").style.display = "none";
+    if(document.getElementById("TB_Lmailaddress").value.length == 0)
+    {
+        document.getElementById("LB_errmailaddress").style.display = "block";
+    }
+
+    else if(document.getElementById("TB_Lpass").value.length == 0)
+    {
+        document.getElementById("LB_errpass").style.display = "block";
+    }
+    else
+    {
+            $('#page2').trigger('change',on());
+            $('#page2').trigger('change',toggleLoader());
+            $('#page2').trigger('change',changetext());
+            setTimeout(function() {
+             location.href = "DR07NippouTouroku.html";
+             }, 3000);
+    }
+
+}
+
 //  function spinner() {   
 //      document.getElementsByClassName("loader")[0].style.display = "block";    
 //     }
+
 
   </script>
 
@@ -93,21 +139,18 @@ function testmail()
     </div> 
     <div style="text-align: center; margin-top: 30px;">  
         <div> 
-            <input id="username" type="text" class="d01 drfont txthighlight text-input text-input--underbar" placeholder="メールアドレス" float>
+            <input id="TB_Lmailaddress" type="text" class="d01 drfont txthighlight text-input text-input--underbar" placeholder="メールアドレス" float> <br/>
+            <label id="LB_errmailaddress" class="drfont dr01mailerrormsg" >このメールアドレスは登録されていません。</label>
         </div>  
         <div style="margin-top: 20px;"> 
-            <input id="password" type="password" class="d01 drfont txthighlight text-input text-input--underbar" maxlength="8" placeholder="パスワード" float />
+            <input id="TB_Lpass" type="password" class="d01 drfont txthighlight text-input text-input--underbar" maxlength="8" placeholder="パスワード" float /><br/>
+            <label id="LB_errpass" class="drfont dr01pswerrormsg">パスワードが正しくありません。</label>
          </div>
         <div> 
         <div style="margin-top: 30px;">
-             <a onclick="return createTimedLink(this, myFunction, 3000);" href="DR03Touroku.html">
-                 
-            <ons-button id="BT_Login" class="drloginbtn drfont" onclick="on();toggleLoader();changetext()">
-                ログイン
-                <!-- <div class="loader">
-                <div class="loading">
-                 </div>
-                </div> -->             
+             <!-- <a onclick="return createTimedLink(this, myFunction, 3000);" href="DR07NippouTouroku.html">                  -->
+            <ons-button id="BT_Login" class="drloginbtn drfont" onclick="testlogin();">
+                ログイン            
                 </ons-button> 
                 
                 <div id="loader" class="loader" style="display:none;">
@@ -118,9 +161,21 @@ function testmail()
                  <div></div>
                  </div>
                 </div>
-                 <!-- <svg id="loader" width="35px" height="35px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-rolling" style="display:none;">
-                 <circle cx="50" cy="50" fill="none" ng-attr-stroke="{{config.color}}" ng-attr-stroke-width="{{config.width}}" ng-attr-r="{{config.radius}}" ng-attr-stroke-dasharray="{{config.dasharray}}" stroke="rgb(230, 8, 8)" stroke-width="10" r="35" stroke-dasharray="164.93361431346415 56.97787143782138" transform="rotate(149.836 50 50)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 50;360 50 50" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></circle></svg> -->
-             </a>
+             <!-- </a> -->
+             <!-- <a onclick="return createTimedLink(this, myFunction, 3000);" href="DR07NippouTouroku.html">                 
+            <ons-button id="BT_Login" class="drloginbtn drfont" onclick="on();toggleLoader();changetext()">
+                ログイン            
+                </ons-button> 
+                
+                <div id="loader" class="loader" style="display:none;">
+                <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                 <div></div>
+                 </div>
+                </div>
+             </a> -->
         </div>  
 
          <div style="margin-top: 30px;">       
@@ -153,8 +208,10 @@ function testmail()
        </div>
       
        <div style="margin-top: 30px;">  
-           <a href="DR02Mail.html" onclick="return createTimedLink(this, myFunction, 3000);">
-            <ons-button id="BT_Soushin" class="drloginbtn drfont" onclick="on1();toggleLoader1();changesoushintext();testmail();">送信</ons-button>  
+        
+            <ons-button id="BT_Soushin" class="drloginbtn drfont" onclick="testmail();">送信
+               
+                </ons-button>  
             <div id="loader1" class="loader1" style="display:none;">
                 <div class="lds-ring">
                 <div></div>
@@ -164,7 +221,7 @@ function testmail()
                  </div>
                 </div>
             
-           </a>
+           
         </div>  
    </div>
   </ons-page>

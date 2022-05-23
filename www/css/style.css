@@ -35,6 +35,23 @@
     font-weight: bold;
 }
 
+.dr01mailerrormsg
+{
+    font-size: 13px;
+    color: red;
+    margin-left: -10px;
+    display: none;
+}
+
+.dr01pswerrormsg
+{
+    font-size: 13px;
+    color: red;
+    margin-left: -70px;
+    display: none;
+}
+
+
 .txthighlight:focus {
   border-color: #66afe9;
   outline: 0;
